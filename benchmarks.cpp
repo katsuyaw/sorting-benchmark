@@ -5,11 +5,16 @@ void printBenchmarkTable(){
     std::cout << "Data Size"    << std::setw(15) << "Insertion"  << std::setw(15) << "Selection"  << std::setw(15) << "Bubble" << std::setw(15) 
               << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge" << std::endl;
 }
-
+double insertionTime(int size){
+    return 0;
+}
 void printBenchmarks(int* size, int i){
-    std::cout << size[i]    << std::setw(15) << "Insertion"  << std::setw(15) << "Selection"  << std::setw(15) << "Bubble" << std::setw(15) 
-              << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge" << std::endl;
-};
+    std::cout << size[i]    << std::setw(15) << insertionTime(size[i])  << std::setw(15) << "Selection"  << std::setw(15) << "Bubble" << std::setw(15) 
+              << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge" <<std::endl;
+}
+
+
+
 
 int main() {
     int size[] = {100000, 200000, 300000, 400000, 500000};
