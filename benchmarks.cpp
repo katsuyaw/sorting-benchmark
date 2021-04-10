@@ -51,58 +51,104 @@ void mergeSort(T* array, int start, int mid, int end){
 }
 
 template<class T>
-double iTime(T* array, int size){
-    double start, finish;
-    start = clock();
-    insertionSort(array, size);
-    finish = clock();
+double sortTime(T* array, int size, char sortType){
+    clock_t start, finish;
+    switch(sortType){
+        case 'i':{
+            start = clock();
+            insertionSort(array, size);
+            finish = clock();
+            break;
+        }
+        case 's':{
+            start = clock();
+            selectionSort(array, size);
+            finish = clock();
+            break;
+        }
+        case 'b':{
+            start = clock();
+            bubbleSort(array, size);
+            finish = clock();
+            break;
+        }
+        case 'h':{
+            start = clock();
+            heapSort(array, size);
+            finish = clock();
+            break;
+        }
+        case 'q':{
+            start = clock();
+            quickSort(array, size);
+            finish = clock();
+            break;
+        }
+        case 'm':{
+            start = clock();
+            mergeSort(array, size);
+            finish = clock();
+            break;
+        }
+
+    }
+    
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
-template<class T>
-double sTime(T* array, int size){
-    double start, finish;
-    start = clock();
-    insertionSort(array, size);
-    finish = clock();
-    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
-}
+// template<class T>
+// double iTime(T* array, int size){
+//     double start, finish;
+//     start = clock();
+//     insertionSort(array, size);
+//     finish = clock();
+//     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+// }
 
-template<class T>
-double bTime(T* array, int size){
-    double start, finish;
-    start = clock();
-    bubbleSort(size);
-    finish = clock();
-    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
-}
+// template<class T>
+// double sTime(T* array, int size){
+//     double start, finish;
+//     start = clock();
+//     insertionSort(array, size);
+//     finish = clock();
+//     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+// }
 
-template<class T>
-double hTime(T* array, int size){
-    double start, finish;
-    start = clock();
-    heapSort(size);
-    finish = clock();
-    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
-}
+// template<class T>
+// double bTime(T* array, int size){
+//     double start, finish;
+//     start = clock();
+//     bubbleSort(size);
+//     finish = clock();
+//     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+// }
 
-template<class T>
-double qTime(T* array, int size){
-    double start, finish;
-    start = clock();
-    quickSort(0);
-    finish = clock();
-    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
-}
+// template<class T>
+// double hTime(T* array, int size){
+//     double start, finish;
+//     start = clock();
+//     heapSort(size);
+//     finish = clock();
+//     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+// }
+
+// template<class T>
+// double qTime(T* array, int size){
+//     double start, finish;
+//     start = clock();
+//     quickSort(0);
+//     finish = clock();
+//     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+// }
 
 
-double mTime(int* array, int size){
-    double start, finish;
-    start = clock();
-    mergeSort(array,0,0,0);
-    finish = clock();
-    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
-}
+// double mTime(int* array, int size){
+//     double start, finish;
+//     start = clock();
+//     mergeSort(array,0,0,0);
+//     finish = clock();
+//     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+// }
 
 void printBenchmarkTable(){
     std::cout << "Data Size"    << std::setw(15) << "Insertion"  << std::setw(15) << "Selection"  << std::setw(15) << "Bubble" << std::setw(15) 
@@ -141,9 +187,13 @@ int main() {
         }
         
         // benchmarking
+        // std::cout<< size
+        //          << std::setw(15) << iTime(iArray, size) << std::setw(15) << sTime(sArray, size) << std::setw(15) << bTime(bArray, size) << std::setw(15) << hTime(hArray, size)
+        //          << std::setw(15) << qTime(qArray, size) << std::setw(15) << mTime(mArray, size) << std::endl;
+
         std::cout<< size
-                 << std::setw(15) << iTime(iArray, size) << std::setw(15) << sTime(sArray, size) << std::setw(15) << bTime(bArray, size) << std::setw(15) << hTime(hArray, size)
-                 << std::setw(15) << qTime(qArray, size) << std::setw(15) << mTime(mArray, size) << std::endl;
+                 << std::setw(15) << sortTime(iArray, size, 'i') << std::setw(15) << sortTime(iArray, size, 's') << std::setw(15) << sortTime(iArray, size, 'b') 
+                 << std::setw(15) << sortTime(iArray, size, 'h') << std::setw(15) << sortTime(iArray, size, 'q') << std::setw(15) << sortTime(iArray, size, 'm') << std::endl;
 
         // free memory
         delete iArray;  iArray = nullptr;
