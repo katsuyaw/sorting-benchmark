@@ -19,6 +19,16 @@ void heapSort(int size){
 
 }
 
+void quickSort(int size){
+
+}
+
+template<class T>
+void merge(T* array, int start, int mid, int end){
+
+}
+
+
 double insertionTime(int size){
     double start, finish;
     start = clock();
@@ -51,6 +61,23 @@ double heapTime(int size){
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
+double quickTime(int size){
+    double start, finish;
+    start = clock();
+    quickSort(0, size-1);
+    finish = clock();
+    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+}
+
+
+double mergeTime(int size){
+    double start, finish;
+    start = clock();
+    mergeSort(0, size-1);
+    finish = clock();
+    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+}
+
 void printBenchmarkTable(){
     std::cout << "Data Size"    << std::setw(15) << "Insertion"  << std::setw(15) << "Selection"  << std::setw(15) << "Bubble" << std::setw(15) 
               << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge" << std::endl;
@@ -59,8 +86,15 @@ void printBenchmarkTable(){
 void printBenchmarks(int* size, int i){
     int input = size[i];
     std::cout << input      << std::setw(15) << insertionTime(input)  << std::setw(15) << selectionTime(input)  << std::setw(15) << bubbleTime(input) << std::setw(15) 
-              << heapTime(input)    << std::setw(15) << "QuickV"      << std::setw(15) << "MergeV" <<std::endl;
+              << heapTime(input)    << std::setw(15) << quickTime(input)      << std::setw(15) << mergeTime(input) <<std::endl;
 }
+
+int* IArray;
+int* SArray;
+int* BArray;
+int* HArray;
+int* QArray;
+int* Marray;
 
 
 
@@ -74,6 +108,7 @@ int main() {
 
     printBenchmarkTable();
     for(int i=0; i<len; i++){
+
         printBenchmarks(size, i);
     }
 
