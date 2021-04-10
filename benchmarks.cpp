@@ -83,11 +83,6 @@ void printBenchmarkTable(){
               << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge" << std::endl;
 }
 
-// void printBenchmarks(int* size, int i){
-//     int input = size[i];
-//     std::cout << input      << std::setw(15) << insertionTime(input)  << std::setw(15) << selectionTime(input)  << std::setw(15) << bubbleTime(input) << std::setw(15) 
-//               << heapTime(input)    << std::setw(15) << quickTime(input)      << std::setw(15) << mergeTime(input) <<std::endl;
-//}
 
 // global array pointers
 int* iArray, *sArray, *bArray, *hArray, *qArray, *mArray;
@@ -120,12 +115,17 @@ int main() {
         }
         
         // benchmarking
-        std::cout << size;
+        std::cout<< size;
         iTime(iArray, size);
+        std::cout<< std::setw(15);
         sTime(sArray, size);
+        std::cout<< std::setw(15);
         bTime(bArray, size);
+        std::cout<< std::setw(15);
         hTime(hArray, size);
+        std::cout<< std::setw(15);
         qTime(qArray, size);
+        std::cout<< std::setw(15);
         mTime(mArray, size);
         std::cout << std::endl;
 
