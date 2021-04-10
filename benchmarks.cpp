@@ -24,12 +24,12 @@ void quickSort(int size){
 }
 
 template<class T>
-void merge(T* array, int start, int mid, int end){
+void mergeSort(T* array, int start, int mid, int end){
 
 }
 
 
-double insertionTime(int size){
+double iTime(int* array, int size){
     double start, finish;
     start = clock();
     insertionSort(size);
@@ -37,7 +37,7 @@ double insertionTime(int size){
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
-double selectionTime(int size){
+double sTime(int* array, int size){
     double start, finish;
     start = clock();
     insertionSort(size);
@@ -45,7 +45,7 @@ double selectionTime(int size){
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
-double bubbleTime(int size){
+double bTime(int* array, int size){
     double start, finish;
     start = clock();
     bubbleSort(size);
@@ -53,7 +53,7 @@ double bubbleTime(int size){
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
-double heapTime(int size){
+double hTime(int* array, int size){
     double start, finish;
     start = clock();
     heapSort(size);
@@ -61,19 +61,19 @@ double heapTime(int size){
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
-double quickTime(int size){
+double qTime(int* array, int size){
     double start, finish;
     start = clock();
-    quickSort(0, size-1);
+    quickSort(0);
     finish = clock();
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
 
-double mergeTime(int size){
+double mTime(int* array, int size){
     double start, finish;
     start = clock();
-    mergeSort(0, size-1);
+    mergeSort(array,0,0,0);
     finish = clock();
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
@@ -83,37 +83,33 @@ void printBenchmarkTable(){
               << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge" << std::endl;
 }
 
-void printBenchmarks(int* size, int i){
-    int input = size[i];
-    std::cout << input      << std::setw(15) << insertionTime(input)  << std::setw(15) << selectionTime(input)  << std::setw(15) << bubbleTime(input) << std::setw(15) 
-              << heapTime(input)    << std::setw(15) << quickTime(input)      << std::setw(15) << mergeTime(input) <<std::endl;
-}
+// void printBenchmarks(int* size, int i){
+//     int input = size[i];
+//     std::cout << input      << std::setw(15) << insertionTime(input)  << std::setw(15) << selectionTime(input)  << std::setw(15) << bubbleTime(input) << std::setw(15) 
+//               << heapTime(input)    << std::setw(15) << quickTime(input)      << std::setw(15) << mergeTime(input) <<std::endl;
+//}
 
-int* iArray;
-int* sArray;
-int* bArray;
-int* hArray;
-int* qArray;
-int* mArray;
-
-
+// global array pointers
+int* iArray, *sArray, *bArray, *hArray, *qArray, *mArray;
 
 int main() {
-    int size[] = {100000, 200000, 300000, 400000, 500000};
-    int len = sizeof(size)/sizeof(size[0]);
+    int arraySize[] = {100000, 200000, 300000, 400000, 500000};
+    int len = sizeof(arraySize)/sizeof(arraySize[0]);
     srand(time(0));
 
-
     printBenchmarkTable();
-    for(int i=0; i<len; i++){
-        iArray = new int[size[i]];
-        sArray = new int[size[i]];
-        bArray = new int[size[i]];
-        hArray = new int[size[i]];
-        qArray = new int[size[i]];
-        mArray = new int[size[i]];
+    for(int i=0; i<len; i++){          
+        // dynamically allocate new memory
+        int size = arraySize[i];
+        iArray = new int[size];
+        sArray = new int[size];
+        bArray = new int[size];
+        hArray = new int[size];
+        qArray = new int[size];
+        mArray = new int[size];
 
-        for(int j=0; j<size[i]; j++){
+        // randomize each array
+        for(int j=0; j<arraySize[i]; j++){  
             int randomVal = rand() % 100;
             iArray[j] = randomVal;
             sArray[j] = randomVal;
@@ -123,9 +119,26 @@ int main() {
             mArray[j] = randomVal;
         }
         
+        // benchmarking
+        std::cout << size;
+        iTime(iArray, size);
+        sTime(sArray, size);
+        bTime(bArray, size);
+        hTime(hArray, size);
+        qTime(qArray, size);
+        mTime(mArray, size);
+        std::cout << std::endl;
+
+        // free memory
+        delete iArray;  iArray = nullptr;
+        delete sArray;  sArray = nullptr;
+        delete bArray;  bArray = nullptr;
+        delete hArray;  hArray = nullptr;
+        delete qArray;  qArray = nullptr;
+        delete mArray;  mArray = nullptr;
         
 
-        printBenchmarks(size, i);
+        // printBenchmarks(size, i);
     }
 
     
