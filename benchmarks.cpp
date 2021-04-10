@@ -2,26 +2,66 @@
 #include <iomanip>
 #include <ctime>
 
+
+void insertionSort(int size){
+   
+}
+
+void selectionSort(int size){
+   
+}
+
+void bubbleSort(int size){
+
+}
+
+void heapSort(int size){
+
+}
+
+double insertionTime(int size){
+    double start, finish;
+    start = clock();
+    insertionSort(size);
+    finish = clock();
+    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+}
+
+double selectionTime(int size){
+    double start, finish;
+    start = clock();
+    insertionSort(size);
+    finish = clock();
+    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+}
+
+double bubbleTime(int size){
+    double start, finish;
+    start = clock();
+    bubbleSort(size);
+    finish = clock();
+    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+}
+
+double heapTime(int size){
+    double start, finish;
+    start = clock();
+    heapSort(size);
+    finish = clock();
+    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
+}
+
 void printBenchmarkTable(){
     std::cout << "Data Size"    << std::setw(15) << "Insertion"  << std::setw(15) << "Selection"  << std::setw(15) << "Bubble" << std::setw(15) 
               << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge" << std::endl;
 }
 
-void insertion(){
-   
-};
-
-double insertionTime(int size){
-    double start, finish;
-    start = clock();
-    insertion();
-    finish = clock();
-    return (double)((finish - start) / (double)CLOCKS_PER_SEC);
-}
 void printBenchmarks(int* size, int i){
-    std::cout << size[i]    << std::setw(15) << insertionTime(size[i])  << std::setw(15) << "SelectionV"  << std::setw(15) << "BubbleV" << std::setw(15) 
-              << "HeapV"         << std::setw(15) << "QuickV"      << std::setw(15) << "MergeV" <<std::endl;
+    int input = size[i];
+    std::cout << input      << std::setw(15) << insertionTime(input)  << std::setw(15) << selectionTime(input)  << std::setw(15) << bubbleTime(input) << std::setw(15) 
+              << heapTime(input)    << std::setw(15) << "QuickV"      << std::setw(15) << "MergeV" <<std::endl;
 }
+
 
 
 int main() {
