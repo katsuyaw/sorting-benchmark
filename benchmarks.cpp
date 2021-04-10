@@ -3,11 +3,12 @@
 
 void printBenchmarkTable(){
     std::cout << "Data Size"    << std::setw(15) << "Insertion"  << std::setw(15) << "Selection"  << std::setw(15) << "Bubble" << std::setw(15) 
-              << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge";
+              << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge" << std::endl;
 }
 
-void printBenchmarks(int i){
-    
+void printBenchmarks(int* size, int i){
+    std::cout << size[i]    << std::setw(15) << "Insertion"  << std::setw(15) << "Selection"  << std::setw(15) << "Bubble" << std::setw(15) 
+              << "Heap"         << std::setw(15) << "Quick"      << std::setw(15) << "Merge" << std::endl;
 };
 
 int main() {
@@ -21,8 +22,7 @@ int main() {
 
     printBenchmarkTable();
     for(int i=0; i<len; i++){
-        std::cout << "\n" << size[i];
-        printBenchmarks(i);
+        printBenchmarks(size, i);
     }
 
     
