@@ -28,8 +28,8 @@ void mergeSort(T* array, int start, int mid, int end){
 
 }
 
-
-double iTime(int* array, int size){
+template<class T>
+double iTime(T* array, int size){
     double start, finish;
     start = clock();
     insertionSort(size);
@@ -37,7 +37,8 @@ double iTime(int* array, int size){
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
-double sTime(int* array, int size){
+template<class T>
+double sTime(T* array, int size){
     double start, finish;
     start = clock();
     insertionSort(size);
@@ -45,7 +46,8 @@ double sTime(int* array, int size){
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
-double bTime(int* array, int size){
+template<class T>
+double bTime(T* array, int size){
     double start, finish;
     start = clock();
     bubbleSort(size);
@@ -53,7 +55,8 @@ double bTime(int* array, int size){
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
-double hTime(int* array, int size){
+template<class T>
+double hTime(T* array, int size){
     double start, finish;
     start = clock();
     heapSort(size);
@@ -61,7 +64,8 @@ double hTime(int* array, int size){
     return (double)((finish - start) / (double)CLOCKS_PER_SEC);
 }
 
-double qTime(int* array, int size){
+template<class T>
+double qTime(T* array, int size){
     double start, finish;
     start = clock();
     quickSort(0);
@@ -115,19 +119,9 @@ int main() {
         }
         
         // benchmarking
-        std::cout<< size;
-        iTime(iArray, size);
-        std::cout<< std::setw(15);
-        sTime(sArray, size);
-        std::cout<< std::setw(15);
-        bTime(bArray, size);
-        std::cout<< std::setw(15);
-        hTime(hArray, size);
-        std::cout<< std::setw(15);
-        qTime(qArray, size);
-        std::cout<< std::setw(15);
-        mTime(mArray, size);
-        std::cout << std::endl;
+        std::cout<< size
+                 << std::setw(15) << iTime(iArray, size) << std::setw(15) << sTime(sArray, size) << std::setw(15) << bTime(bArray, size) << std::setw(15) << hTime(hArray, size)
+                 << std::setw(15) << qTime(qArray, size) << std::setw(15) << mTime(mArray, size) << std::endl;
 
         // free memory
         delete iArray;  iArray = nullptr;
@@ -136,10 +130,6 @@ int main() {
         delete hArray;  hArray = nullptr;
         delete qArray;  qArray = nullptr;
         delete mArray;  mArray = nullptr;
-        
-
-        // printBenchmarks(size, i);
-    }
-
     
+    }    
 }
