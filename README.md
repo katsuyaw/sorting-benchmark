@@ -1,6 +1,6 @@
-# sorting-benchmarks
+# Sorting Benchmarks in C++
 
-Benchmark 6 sorting methods in C++
+Performs benchmarking for the following 6 sorting methods.
 
 1. Selection sort
 2. Insertion sort
@@ -8,3 +8,5 @@ Benchmark 6 sorting methods in C++
 4. Heap sort
 5. Quicksort
 6. Merge sort
+
+Displays the time taken for the sort in milliseconds.
