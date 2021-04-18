@@ -1,5 +1,4 @@
 # Sorting Benchmarks in C++
-
 Performs benchmarking for the following sorting methods.
 
 1. Selection sort
