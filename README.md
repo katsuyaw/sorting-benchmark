@@ -1,6 +1,6 @@
 # Sorting Benchmarks in C++
 
-Performs benchmarking for the following 6 sorting methods.
+Performs benchmarking for the following sorting methods.
 
 1. Selection sort
 2. Insertion sort
